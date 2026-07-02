@@ -142,12 +142,12 @@ export default function Home() {
           <h2>Request Samples or Product Details</h2>
           <p>Tell us your required application, color, thickness, backing and quantity. Our team will reply with suitable product options.</p>
           <ul className="contactList">
-            <li><strong>Email:</strong> sales@fanmeitextile.com</li>
-            <li><strong>WhatsApp:</strong> +971 50 000 0000</li>
+            <li><strong>Email:</strong> wt657200@gmail.com</li>
+            <li><strong>WhatsApp:</strong> +86 176 0870 2004</li>
             <li><strong>Location:</strong> Haining, Zhejiang, China</li>
           </ul>
         </div>
-        <form className="form" action="mailto:sales@fanmeitextile.com" method="post" encType="text/plain">
+        <form className="form" action="mailto:wt657200@gmail.com" method="post" encType="text/plain">
           <input name="name" placeholder="Your Name" />
           <input name="company" placeholder="Company" />
           <input name="email" placeholder="Email" />
@@ -157,7 +157,14 @@ export default function Home() {
         </form>
       </section>
 
-      <a className="whatsapp" href="https://wa.me/971500000000" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a
+  className="whatsapp"
+  href="https://wa.me/8617608702004?text=Hello%20Fanmei%20Textile,%20I%20am%20interested%20in%20your%20PVC%20synthetic%20leather."
+  target="_blank"
+  rel="noreferrer"
+>
+  WhatsApp
+</a>
 
       <footer>
         <strong>Fanmei Textile</strong>
