@@ -1,27 +1,36 @@
-# Fanmei Textile Website
+# Fanmei Textile B2B Website
 
-Simple English B2B website for Haining Fanmei Textile Technology Co., Ltd.
+English B2B website for HAINING FANMEI TEXTILE TECHNOLOGY CO., LTD.
 
-## Pages / Sections
-- Company Introduction
-- Products
-- Factory
-- Contact
+## Main routes
 
-## Deploy on Vercel
-1. Upload all files to GitHub repository `fanmei-textile/fanmeitextile`.
-2. Go to Vercel and import the repository.
-3. Select `Next.js`.
-4. Click `Deploy`.
+- `/` — manufacturer overview and conversion landing page
+- `/products` — product series overview
+- `/products/[slug]` — product details and specification guidance
+- `/about` — company profile
+- `/factory` — manufacturing process and production photos
+- `/contact` — verified contact methods and RFQ form
+- `/rfq` — WhatsApp/email RFQ preparation flow
 
-## Local run
+## Local development
+
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-## Contact placeholders
-- Email: sales@fanmeitextile.com
-- WhatsApp: +971500000000
+Run checks before deployment:
 
-Replace these later with the final business contact details.
+```bash
+pnpm lint
+pnpm typecheck
+pnpm build
+```
+
+## Inquiry flow
+
+The site intentionally does not claim to store RFQs without a configured backend. The RFQ form prepares a structured message for the buyer to review and send through the verified WhatsApp number or email address.
+
+## Production
+
+The `main` branch is connected to the Vercel project `fanmeitextile`. The currently confirmed production URL is `https://fanmeitextile.vercel.app`.

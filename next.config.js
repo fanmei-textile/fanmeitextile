@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  agentRules: false,
+  poweredByHeader: false,
   images: {
-    unoptimized: false
-  }
-}
-module.exports = nextConfig
+    formats: ["image/avif", "image/webp"],
+  },
+};
+
+module.exports = nextConfig;

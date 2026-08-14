@@ -1,175 +1,175 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { ProductCard } from '@/components/product-card'
+import { products } from '@/lib/products'
+import { defaultWhatsAppMessage, whatsappUrl } from '@/lib/site'
 
-const products = [
-  {
-    name: 'PVC Sofa Leather',
-    image: '/images/pvc-leather-color-rolls-01.webp',
-    text: 'Durable PVC leather for sofas, recliners and furniture upholstery with stable color and soft hand feel.'
-  },
-  {
-    name: 'PVC Upholstery Leather',
-    image: '/images/showroom-pvc-leather-hanging-samples-02.webp',
-    text: 'Wide color and grain options for office chairs, hotel furniture, wall panels and interior decoration.'
-  },
-  {
-    name: 'Cat Scratch Leather',
-    image: '/images/pvc-leather-closeup-premium-texture-01.webp',
-    text: 'Textured synthetic leather designed for furniture applications requiring better surface resistance.'
-  },
-  {
-    name: 'Eco Leather',
-    image: '/images/pvc-leather-color-card-y007.webp',
-    text: 'Practical synthetic leather material for modern furniture, decoration and commercial interiors.'
-  },
-  {
-    name: 'Vintage Leather',
-    image: '/images/vintage-pvc-leather-samples-01.webp',
-    text: 'Classic vintage surface effect for sofas, chairs, cafes, restaurants and decorative furniture.'
-  }
+const facts = [
+  ['≈2,000,000 m', 'Monthly production capacity'],
+  ['140–142 cm', 'Standard width range'],
+  ['800–1,000 m', 'Typical custom MOQ / color'],
+  ['10–15 days', 'One-container production'],
 ]
 
-const factoryImages = [
-  '/images/factory-production-line-01.webp',
-  '/images/factory-coating-line-02.webp',
-  '/images/factory-equipment-03.webp',
-  '/images/factory-roll-production-05.webp'
+const customOptions = [
+  ['Thickness', '0.6 / 0.9 / 1.1 / 1.4 / 1.5 / 1.8 mm'],
+  ['Color', 'Sample matching and production color development'],
+  ['Surface', 'Texture selection and custom embossing support'],
+  ['Backing', 'Construction selected for the finished application'],
+  ['Performance', 'Flame-retardant, stain-resistant and easy-clean constructions available by requirement'],
+  ['Development', 'OEM and physical sample matching for repeat programs'],
 ]
 
-const gallery = [
-  '/images/showroom-color-collection-wide-01.webp',
-  '/images/showroom-color-collection-wide-02.webp',
-  '/images/pvc-leather-color-card-display-01.webp',
-  '/images/pvc-leather-color-card-2211.webp',
-  '/images/pvc-leather-color-card-288.webp',
-  '/images/pvc-leather-color-card-815.webp'
-]
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main>
-      <header className="nav">
-        <div className="brand">Fanmei Textile</div>
-        <nav>
-          <a href="#about">About</a>
-          <a href="#products">Products</a>
-          <a href="#factory">Factory</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+    <main id="main-content">
+      <section className="home-hero">
+        <Image
+          src="/images/pvc-leather-color-rolls-01.webp"
+          alt="PVC synthetic leather rolls in multiple upholstery colors"
+          fill
+          priority
+          loading="eager"
+          sizes="100vw"
+          className="home-hero-image"
+        />
+        <div className="home-hero-overlay" />
+        <div className="container home-hero-content">
+          <p className="eyebrow light">Factory direct · Haining, China</p>
+          <h1>PVC Synthetic Leather Manufacturer for Furniture & Upholstery</h1>
+          <p className="hero-lead">
+            Factory-direct PVC leather for sofas, chairs, hotel furniture and commercial upholstery, with custom color, texture, thickness and backing.
+          </p>
+          <div className="hero-actions">
+            <Link className="button button-gold" href="/rfq">Get a Quote</Link>
+            <a className="button button-ghost" href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer">
+              Chat on WhatsApp
+            </a>
+          </div>
+          <ul className="hero-proof" aria-label="Production capabilities">
+            <li>Container order support</li>
+            <li>OEM / sample matching</li>
+            <li>Furniture-focused production</li>
+          </ul>
+        </div>
+      </section>
 
-      <section className="hero">
-        <Image src="/images/fanmei-office-reception-02.webp" alt="Fanmei Textile showroom and office" fill priority className="heroImg" />
-        <div className="overlay" />
-        <div className="heroContent">
-          <p className="eyebrow">Haining, Zhejiang, China</p>
-          <h1>PVC Synthetic Leather Manufacturer</h1>
-          <p className="sub">Factory direct PVC leather solutions for sofas, furniture, hotels, office chairs and interior decoration.</p>
-          <div className="buttons">
-            <a className="btn primary" href="#products">View Products</a>
-            <a className="btn secondary" href="#contact">Contact Us</a>
+      <section className="fact-bar" aria-label="Factory facts">
+        <div className="container fact-grid">
+          {facts.map(([value, label]) => (
+            <div key={label}><strong>{value}</strong><span>{label}</span></div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section container intro-grid">
+        <div className="section-copy">
+          <p className="eyebrow">Made for furniture production</p>
+          <h2>A direct material partner for upholstery buyers</h2>
+          <p className="lead">
+            Fanmei Textile manufactures PVC synthetic leather for furniture factories, upholstery producers, wholesalers and distributors.
+          </p>
+          <p>
+            Buyers can start from an existing color card, a target specification or a physical sample. We align the surface, thickness, backing and construction before production.
+          </p>
+          <div className="inline-actions">
+            <Link className="text-link" href="/about">About the manufacturer <span>→</span></Link>
+            <Link className="text-link" href="/factory">See manufacturing <span>→</span></Link>
           </div>
         </div>
-      </section>
-
-      <section className="stats">
-        <div><strong>2,000,000m</strong><span>Monthly Capacity</span></div>
-        <div><strong>OEM/ODM</strong><span>Custom Support</span></div>
-        <div><strong>300+</strong><span>Color Options</span></div>
-        <div><strong>Factory</strong><span>Direct Supply</span></div>
-      </section>
-
-      <section id="about" className="section twoCol">
-        <div>
-          <p className="eyebrow dark">Company Introduction</p>
-          <h2>Haining Fanmei Textile Technology Co., Ltd.</h2>
-          <p>
-            Fanmei Textile is a PVC synthetic leather manufacturer located in Haining, Zhejiang, China. We supply PVC sofa leather, upholstery leather, cat scratch leather, eco leather and vintage leather for furniture manufacturers, hotel projects, office chair factories and interior decoration companies.
-          </p>
-          <p>
-            With stable production capacity and rich color selections, we support OEM/ODM requirements, sample development and factory direct supply for overseas customers.
-          </p>
-        </div>
-        <div className="imageCard">
-          <Image src="/images/fanmei-company-building-sign-02.webp" alt="Haining Fanmei Textile company building" width={900} height={650} />
+        <div className="intro-media">
+          <Image
+            src="/images/fanmei-company-building-sign-02.webp"
+            alt="Haining Fanmei Textile company building and sign"
+            width={920}
+            height={700}
+            sizes="(max-width: 800px) 100vw, 50vw"
+          />
+          <div className="media-note"><strong>Factory direct</strong><span>Haining, Zhejiang, China</span></div>
         </div>
       </section>
 
-      <section id="products" className="section gray">
-        <div className="centerTitle">
-          <p className="eyebrow dark">Product Details</p>
-          <h2>Main Product Series</h2>
-          <p>Simple, practical and reliable PVC leather materials for furniture and decoration applications.</p>
+      <section className="section section-tint">
+        <div className="container">
+          <div className="section-heading split-heading">
+            <div>
+              <p className="eyebrow">Product series</p>
+              <h2>Organized around your application</h2>
+            </div>
+            <p>Compare core use cases first, then confirm the exact construction through samples and specifications.</p>
+          </div>
+          <div className="product-grid">
+            {products.map((product) => <ProductCard product={product} key={product.slug} />)}
+          </div>
+          <div className="section-cta"><Link className="button button-dark" href="/products">Compare all product series</Link></div>
         </div>
-        <div className="productGrid">
-          {products.map((p) => (
-            <article className="product" key={p.name}>
-              <Image src={p.image} alt={p.name} width={700} height={520} />
-              <div>
-                <h3>{p.name}</h3>
-                <p>{p.text}</p>
-                <span>Applications: sofa, furniture, office chair, hotel, decoration</span>
-              </div>
+      </section>
+
+      <section className="section container customization-section">
+        <div className="section-heading centered">
+          <p className="eyebrow">Customization capability</p>
+          <h2>Build the material around the finished product</h2>
+          <p>Share the target use, sample and order plan. The specification is confirmed before quotation and bulk production.</p>
+        </div>
+        <div className="capability-grid">
+          {customOptions.map(([title, text], index) => (
+            <article key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="section">
-        <div className="centerTitle">
-          <p className="eyebrow dark">Color Collection</p>
-          <h2>Rich Colors & Surface Textures</h2>
-          <p>Color matching and sample development are available according to customer requirements.</p>
-        </div>
-        <div className="gallery">
-          {gallery.map((src, i) => <Image key={src} src={src} alt={`PVC leather color collection ${i + 1}`} width={700} height={520} />)}
+      <section className="factory-band">
+        <div className="container factory-band-grid">
+          <div className="factory-band-copy">
+            <p className="eyebrow light">Production visibility</p>
+            <h2>Real production and material images</h2>
+            <p>
+              Review coating equipment, roll production, color cards and sample collections before moving to specification matching.
+            </p>
+            <ul className="check-list">
+              <li>Production capability for container orders</li>
+              <li>Color cards and physical samples</li>
+              <li>Custom construction for repeat purchasing</li>
+            </ul>
+            <Link className="button button-light" href="/factory">View factory & process</Link>
+          </div>
+          <div className="factory-collage">
+            <Image src="/images/factory-production-line-01.webp" alt="Fanmei PVC leather production line" width={900} height={620} sizes="(max-width: 900px) 100vw, 42vw" />
+            <Image src="/images/factory-roll-production-05.webp" alt="PVC leather roll production at Fanmei" width={520} height={420} sizes="(max-width: 900px) 48vw, 22vw" />
+            <Image src="/images/fanmei-sample-exhibition-hall-01.webp" alt="Fanmei material sample exhibition hall" width={520} height={420} sizes="(max-width: 900px) 48vw, 22vw" />
+          </div>
         </div>
       </section>
 
-      <section id="factory" className="section darkSection">
-        <div className="centerTitle light">
-          <p className="eyebrow">Factory Strength</p>
-          <h2>Production Lines & Stable Supply</h2>
-          <p>Real factory photos showing production equipment, coating lines and roll material processing.</p>
+      <section className="section container applications-section">
+        <div className="section-heading centered">
+          <p className="eyebrow">Applications</p>
+          <h2>Material supply for everyday and contract furniture</h2>
         </div>
-        <div className="factoryGrid">
-          {factoryImages.map((src, i) => <Image key={src} src={src} alt={`Fanmei factory production line ${i + 1}`} width={800} height={560} />)}
+        <div className="application-grid">
+          {['Sofas & recliners', 'Office & dining chairs', 'Hotel furniture', 'Commercial seating', 'Interior upholstery', 'Wall panels & soft decoration'].map((item) => (
+            <div key={item}><span aria-hidden="true">◆</span>{item}</div>
+          ))}
         </div>
       </section>
 
-      <section id="contact" className="section contact">
-        <div>
-          <p className="eyebrow dark">Contact Us</p>
-          <h2>Request Samples or Product Details</h2>
-          <p>Tell us your required application, color, thickness, backing and quantity. Our team will reply with suitable product options.</p>
-          <ul className="contactList">
-            <li><strong>Email:</strong> wt657200@gmail.com</li>
-            <li><strong>WhatsApp:</strong> +86 176 0870 2004</li>
-            <li><strong>Location:</strong> Haining, Zhejiang, China</li>
-          </ul>
+      <section className="quote-band">
+        <div className="container quote-band-inner">
+          <div>
+            <p className="eyebrow light">Start with your requirement</p>
+            <h2>Send a sample or specification for matching</h2>
+            <p>Include application, target thickness, color, quantity and expected order timing.</p>
+          </div>
+          <div className="quote-band-actions">
+            <Link className="button button-gold" href="/rfq">Request a Quote</Link>
+            <Link className="button button-ghost" href="/contact">Contact Factory</Link>
+          </div>
         </div>
-        <form className="form" action="mailto:wt657200@gmail.com" method="post" encType="text/plain">
-          <input name="name" placeholder="Your Name" />
-          <input name="company" placeholder="Company" />
-          <input name="email" placeholder="Email" />
-          <input name="whatsapp" placeholder="WhatsApp" />
-          <textarea name="message" placeholder="Product, color, quantity and application" />
-          <button type="submit">Send Inquiry</button>
-        </form>
       </section>
-
-      <a
-  className="whatsapp"
-  href="https://wa.me/8617608702004?text=Hello%20Fanmei%20Textile,%20I%20am%20interested%20in%20your%20PVC%20synthetic%20leather."
-  target="_blank"
-  rel="noreferrer"
->
-  WhatsApp
-</a>
-
-      <footer>
-        <strong>Fanmei Textile</strong>
-        <span>© 2026 Haining Fanmei Textile Technology Co., Ltd. All rights reserved.</span>
-      </footer>
     </main>
   )
 }
