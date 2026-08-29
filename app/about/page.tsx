@@ -49,7 +49,7 @@ export default function AboutPage() {
             <article><strong>≈2,000,000 m</strong><h3>Monthly capacity</h3><p>Production capacity for ongoing furniture and distribution programs.</p></article>
             <article><strong>140–142 cm</strong><h3>Width range</h3><p>Standard width range for the supplied PVC leather constructions.</p></article>
             <article><strong>800–1,000 m</strong><h3>Custom MOQ / color</h3><p>Typical minimum for customized production, subject to the confirmed item.</p></article>
-            <article><strong>10–15 days</strong><h3>Container production</h3><p>Approximate production time for one container after order confirmation.</p></article>
+            <article><strong>7–10 days</strong><h3>FCL production</h3><p>Approximate production time after order and specification confirmation.</p></article>
           </div>
         </div>
       </section>
@@ -63,6 +63,8 @@ export default function AboutPage() {
           <article><h3>Repeat supply</h3><p>Confirmed specifications support clearer reordering for manufacturers and distributors.</p></article>
         </div>
       </section>
+
+      <section className="quote-band"><div className="container quote-band-inner"><div><p className="eyebrow light">Work from your reference</p><h2>Develop PVC leather according to your sample</h2><p>Share photos first, then send a physical sample when construction matching is required.</p></div><div className="quote-band-actions"><Link className="button button-gold" href="/sample-based-customization">Send Your Sample</Link><Link className="button button-ghost" href="/rfq">Get FOB Quote</Link></div></div></section>
 
       <section className="image-strip" aria-label="Fanmei company and product samples">
         <Image src="/images/fanmei-building-exterior-01.webp" alt="Fanmei Textile building exterior" width={700} height={520} sizes="33vw" />

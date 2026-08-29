@@ -41,7 +41,7 @@ export default function ContactPage() {
       <section className="quote-band">
         <div className="container quote-band-inner">
           <div><p className="eyebrow light">Have a reference sample?</p><h2>Tell us what must be matched</h2><p>We can discuss sample delivery details privately by WhatsApp or email.</p></div>
-          <Link className="button button-gold" href="/rfq">Prepare your RFQ</Link>
+          <div className="quote-band-actions"><Link className="button button-gold" href="/sample-based-customization">Send Your Sample</Link><Link className="button button-ghost" href="/rfq">Get FOB Quote</Link></div>
         </div>
       </section>
     </main>

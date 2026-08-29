@@ -6,6 +6,7 @@ import { Breadcrumbs } from '@/components/breadcrumbs'
 import { ProductCard } from '@/components/product-card'
 import { getProduct, products } from '@/lib/products'
 import { site, whatsappUrl } from '@/lib/site'
+import { factorySpecifications } from '@/lib/specifications'
 
 type ProductPageProps = { params: Promise<{ slug: string }> }
 
@@ -18,8 +19,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const product = getProduct(slug)
   if (!product) return {}
   return {
-    title: `${product.name} Manufacturer`,
-    description: `${product.summary} Factory-direct supply with custom thickness, color, texture and backing.`,
+    title: product.seoTitle,
+    description: product.metaDescription,
     alternates: { canonical: `/products/${product.slug}` },
     openGraph: {
       title: `${product.name} Manufacturer | Fanmei Textile`,
@@ -55,6 +56,15 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       { '@type': 'ListItem', position: 3, name: product.name, item: `${site.url}/products/${product.slug}` },
     ],
   }
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: product.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
 
   return (
     <main id="main-content">
@@ -68,13 +78,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <h1>{product.name}</h1>
           <p className="lead">{product.summary}</p>
           <dl className="quick-specs">
-            <div><dt>Width</dt><dd>140–142 cm</dd></div>
-            <div><dt>Thickness</dt><dd>0.6–1.8 mm options</dd></div>
-            <div><dt>Custom MOQ</dt><dd>Generally 800–1,000 m / color</dd></div>
-            <div><dt>Lead time</dt><dd>Approx. 10–15 days / container</dd></div>
+            <div><dt>Width</dt><dd>{factorySpecifications.width}</dd></div>
+            <div><dt>Thickness</dt><dd>{factorySpecifications.thickness}</dd></div>
+            <div><dt>Custom MOQ</dt><dd>Usually 800–1,000 m / color</dd></div>
+            <div><dt>FCL lead time</dt><dd>Approx. 7–10 days after confirmation</dd></div>
           </dl>
           <div className="hero-actions dark-actions">
-            <Link className="button button-dark" href={`/rfq?product=${encodeURIComponent(product.name)}`}>Request a Quote</Link>
+            <Link className="button button-dark" href={`/rfq?product=${encodeURIComponent(product.name)}`}>Ask for an FOB Quote</Link>
             <a className="button button-outline" href={whatsappUrl(productMessage)} target="_blank" rel="noreferrer">Ask on WhatsApp</a>
           </div>
         </div>
@@ -86,6 +96,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p className="eyebrow">Buyer fit</p>
             <h2>Who this series is for</h2>
             <p>{product.buyerFit}.</p>
+            <p>{product.purchaseFocus}</p>
             <h3>Typical applications</h3>
             <ul className="check-list dark-checks">{product.applications.map((application) => <li key={application}>{application}</li>)}</ul>
           </article>
@@ -100,6 +111,33 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <div><dt>Performance</dt><dd>Options developed according to the customer’s stated requirement</dd></div>
             </dl>
           </article>
+        </div>
+      </section>
+
+      <section className="section container detail-grid">
+        <article>
+          <p className="eyebrow">Quotation checklist</p>
+          <h2>What to send for an accurate FOB quote</h2>
+          <ul className="check-list dark-checks">{product.quoteChecks.map((item) => <li key={item}>{item}</li>)}</ul>
+          <p>Reference photos help with initial review. A physical sample is recommended when surface, backing and construction must be matched.</p>
+          <Link className="text-link" href="/sample-based-customization">See the sample matching process <span>→</span></Link>
+        </article>
+        <article>
+          <p className="eyebrow">Commercial reference</p>
+          <h2>Factory supply parameters</h2>
+          <dl className="detail-list">
+            <div><dt>Trade term</dt><dd>{factorySpecifications.tradeTerm}</dd></div>
+            <div><dt>Monthly capacity</dt><dd>{factorySpecifications.capacity}</dd></div>
+            <div><dt>Reference weights</dt><dd>{factorySpecifications.referenceConstructions.join('; ')}</dd></div>
+            <div><dt>Backing options</dt><dd>{factorySpecifications.backings.join(', ')}</dd></div>
+          </dl>
+        </article>
+      </section>
+
+      <section className="section container">
+        <div className="section-heading centered"><p className="eyebrow">Buyer questions</p><h2>Frequently asked questions</h2></div>
+        <div className="faq-list">
+          {product.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}
         </div>
       </section>
 
@@ -130,6 +168,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </main>
   )
 }

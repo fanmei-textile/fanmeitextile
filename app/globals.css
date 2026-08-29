@@ -259,6 +259,13 @@ select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(201, 150,
 .process-steps li:last-child { border-right: 0; }
 .process-steps span { color: var(--gold-light); font-size: 0.8rem; font-weight: 900; }
 .process-steps p { margin: 52px 0 0; color: #d5e0dc; font-size: 0.9rem; line-height: 1.55; }
+.light-process li { border-color: var(--line); }
+.light-process span { color: #9b702b; }
+.light-process p { color: var(--muted); }
+.faq-list { max-width: 920px; margin: 38px auto 0; border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { cursor: pointer; padding: 22px 44px 22px 0; color: var(--forest); font-weight: 800; line-height: 1.45; }
+.faq-list details p { max-width: 800px; margin: -4px 0 22px; color: var(--muted); line-height: 1.7; }
 
 .fact-card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .fact-card-grid article { padding: 28px; background: var(--white); border-top: 3px solid var(--gold); box-shadow: 0 8px 20px rgba(17,43,37,0.05); }

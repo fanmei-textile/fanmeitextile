@@ -14,11 +14,13 @@ export function SiteFooter() {
           <Link href="/products/pvc-sofa-leather">PVC Sofa Leather</Link>
           <Link href="/products/pvc-upholstery-leather">PVC Upholstery Leather</Link>
           <Link href="/products/custom-pvc-leather">Custom PVC Leather</Link>
+          <Link href="/sample-based-customization">Sample Matching</Link>
         </div>
         <div>
           <h2>Company</h2>
           <Link href="/about">About Fanmei</Link>
           <Link href="/factory">Manufacturing</Link>
+          <Link href="/guides/pvc-leather-thickness-guide">Thickness Guide</Link>
           <Link href="/contact">Contact</Link>
         </div>
         <div>

@@ -3,7 +3,7 @@ import { products } from '@/lib/products'
 import { site } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ['', '/products', '/about', '/factory', '/contact', '/rfq']
+  const routes = ['', '/products', '/sample-based-customization', '/guides/pvc-leather-thickness-guide', '/about', '/factory', '/contact', '/rfq']
   return [
     ...routes.map((route, index) => ({
       url: `${site.url}${route}`,

@@ -38,7 +38,8 @@ export default function FactoryPage() {
           <p className="eyebrow">Production overview</p>
           <h2>Capacity for furniture and upholstery orders</h2>
           <p className="lead">Approximately 2,000,000 meters of monthly production capacity supports container orders and repeat purchasing programs.</p>
-          <p>Available thicknesses include 0.6, 0.9, 1.1, 1.4, 1.5 and 1.8 mm. The correct option depends on the application, backing and target hand feel.</p>
+          <p>Available thickness ranges from 0.6 to 2.0 mm. Reference constructions include approximately 250–260 gsm at 0.6 mm and approximately 340 gsm ±5% at 0.9 mm; other weights are confirmed against the selected construction.</p>
+          <p>Typical FCL production is approximately 7–10 days after order and specification confirmation. Standard commercial discussion is based on FOB terms.</p>
         </div>
         <div className="factory-feature-image"><Image src="/images/factory-coating-line-02.webp" alt="PVC leather coating line at Fanmei" width={960} height={720} sizes="(max-width: 900px) 100vw, 50vw" /></div>
       </section>
@@ -64,7 +65,7 @@ export default function FactoryPage() {
       <section className="section section-tint">
         <div className="container detail-grid">
           <article><p className="eyebrow">Customization</p><h2>Variables we can discuss</h2><ul className="check-list dark-checks"><li>Thickness and hand feel</li><li>Color matching</li><li>Texture and embossing</li><li>Backing construction</li><li>Flame-retardant construction</li><li>Stain-resistant and easy-clean options</li><li>Solvent-free options</li></ul></article>
-          <article><p className="eyebrow">What to send</p><h2>Prepare a faster evaluation</h2><ul className="check-list dark-checks"><li>Finished application</li><li>Target thickness and width</li><li>Color or physical sample</li><li>Required backing</li><li>Estimated quantity per color</li><li>Performance requirement</li><li>Target order timing</li></ul></article>
+          <article><p className="eyebrow">What to send</p><h2>Prepare a faster evaluation</h2><ul className="check-list dark-checks"><li>Finished application</li><li>Front, back and side/profile photos</li><li>Target thickness and gsm if available</li><li>Physical sample when possible</li><li>Required backing</li><li>Estimated quantity per color</li><li>Performance requirement and order timing</li></ul><Link className="text-link" href="/sample-based-customization">See sample-based development <span>→</span></Link></article>
         </div>
       </section>
     </main>

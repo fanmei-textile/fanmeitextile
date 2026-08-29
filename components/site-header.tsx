@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 const links = [
   { href: '/products', label: 'Products' },
+  { href: '/sample-based-customization', label: 'Sample Matching' },
   { href: '/about', label: 'About' },
   { href: '/factory', label: 'Manufacturing' },
   { href: '/contact', label: 'Contact' },
@@ -25,7 +26,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Link className="button button-small header-quote" href="/rfq">Get a Quote</Link>
+        <Link className="button button-small header-quote" href="/rfq">Get FOB Quote</Link>
 
         <details className="mobile-menu">
           <summary aria-label="Open navigation">Menu</summary>
@@ -33,7 +34,7 @@ export function SiteHeader() {
             {links.map((link) => (
               <Link href={link.href} key={link.href}>{link.label}</Link>
             ))}
-            <Link className="mobile-quote" href="/rfq">Get a Quote</Link>
+            <Link className="mobile-quote" href="/rfq">Get FOB Quote</Link>
           </nav>
         </details>
       </div>

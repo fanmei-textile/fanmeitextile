@@ -7,16 +7,16 @@ import { defaultWhatsAppMessage, whatsappUrl } from '@/lib/site'
 const facts = [
   ['≈2,000,000 m', 'Monthly production capacity'],
   ['140–142 cm', 'Standard width range'],
-  ['800–1,000 m', 'Typical custom MOQ / color'],
-  ['10–15 days', 'One-container production'],
+  ['0.6–2.0 mm', 'Available thickness range'],
+  ['7–10 days', 'Typical FCL production after confirmation'],
 ]
 
 const customOptions = [
-  ['Thickness', '0.6 / 0.9 / 1.1 / 1.4 / 1.5 / 1.8 mm'],
+  ['Thickness', '0.6–2.0 mm, selected for the target construction'],
   ['Color', 'Sample matching and production color development'],
   ['Surface', 'Texture selection and custom embossing support'],
-  ['Backing', 'Construction selected for the finished application'],
-  ['Performance', 'Flame-retardant, stain-resistant and easy-clean constructions available by requirement'],
+  ['Backing', 'Knitted, woven or non-woven options for the finished application'],
+  ['Performance', 'FR, stain-resistant, easy-clean, anti-mildew and solvent-free options developed by requirement'],
   ['Development', 'OEM and physical sample matching for repeat programs'],
 ]
 
@@ -41,13 +41,13 @@ export default function HomePage() {
             Factory-direct PVC leather for sofas, chairs, hotel furniture and commercial upholstery, with custom color, texture, thickness and backing.
           </p>
           <div className="hero-actions">
-            <Link className="button button-gold" href="/rfq">Get a Quote</Link>
+            <Link className="button button-gold" href="/rfq">Get Factory FOB Quote</Link>
             <a className="button button-ghost" href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer">
               Chat on WhatsApp
             </a>
           </div>
           <ul className="hero-proof" aria-label="Production capabilities">
-            <li>Container order support</li>
+            <li>MOQ usually 800–1,000 m / color</li>
             <li>OEM / sample matching</li>
             <li>Furniture-focused production</li>
           </ul>
@@ -99,7 +99,7 @@ export default function HomePage() {
             <p>Compare core use cases first, then confirm the exact construction through samples and specifications.</p>
           </div>
           <div className="product-grid">
-            {products.map((product) => <ProductCard product={product} key={product.slug} />)}
+            {products.slice(0, 6).map((product) => <ProductCard product={product} key={product.slug} />)}
           </div>
           <div className="section-cta"><Link className="button button-dark" href="/products">Compare all product series</Link></div>
         </div>
@@ -145,6 +145,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section container detail-grid">
+        <article>
+          <p className="eyebrow">Sample-based development</p>
+          <h2>Start from the material already approved by your market</h2>
+          <p>Send front, back and side photos for initial review, then provide a physical sample when the surface, embossing, color, thickness, weight and backing need closer evaluation.</p>
+          <Link className="button button-dark" href="/sample-based-customization">View sample matching process</Link>
+        </article>
+        <div className="intro-media">
+          <Image src="/images/pvc-leather-sample-books-01.webp" alt="PVC leather sample books for buyer sample matching" width={920} height={700} sizes="(max-width: 800px) 100vw, 50vw" />
+        </div>
+      </section>
+
       <section className="section container applications-section">
         <div className="section-heading centered">
           <p className="eyebrow">Applications</p>
@@ -165,8 +177,8 @@ export default function HomePage() {
             <p>Include application, target thickness, color, quantity and expected order timing.</p>
           </div>
           <div className="quote-band-actions">
-            <Link className="button button-gold" href="/rfq">Request a Quote</Link>
-            <Link className="button button-ghost" href="/contact">Contact Factory</Link>
+            <Link className="button button-gold" href="/rfq">Get Factory FOB Quote</Link>
+            <Link className="button button-ghost" href="/sample-based-customization">Request Sample Matching</Link>
           </div>
         </div>
       </section>

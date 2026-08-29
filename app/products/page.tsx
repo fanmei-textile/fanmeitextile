@@ -4,19 +4,22 @@ import { Breadcrumbs } from '@/components/breadcrumbs'
 import { PageHero } from '@/components/page-hero'
 import { ProductCard } from '@/components/product-card'
 import { products } from '@/lib/products'
+import { factorySpecifications } from '@/lib/specifications'
 
 export const metadata: Metadata = {
-  title: 'PVC Leather Products for Furniture & Upholstery',
+  title: 'PVC Upholstery Leather Manufacturer & Product Range',
   description:
     'Compare Fanmei PVC sofa leather, upholstery leather, chair leather, furniture leather and custom PVC leather series for manufacturing and distribution.',
   alternates: { canonical: '/products' },
 }
 
 const constructionRows = [
-  ['Width', '140–142 cm'],
-  ['Available thickness', '0.6 / 0.9 / 1.1 / 1.4 / 1.5 / 1.8 mm'],
-  ['Custom MOQ', 'Generally 800–1,000 meters per color'],
-  ['Container production', 'Approximately 10–15 days'],
+  ['Width', factorySpecifications.width],
+  ['Available thickness', factorySpecifications.thickness],
+  ['Reference construction', '0.6 mm: approx. 250–260 gsm; 0.9 mm: approx. 340 gsm ±5%'],
+  ['Custom MOQ', 'Usually 800–1,000 meters per color, depending on specification'],
+  ['FCL production', 'Approx. 7–10 days after order and specification confirmation'],
+  ['Trade term', factorySpecifications.tradeTerm],
   ['Color & texture', 'Existing selections or sample matching'],
   ['Backing', 'Selected according to application and target construction'],
 ]
@@ -26,12 +29,12 @@ export default function ProductsPage() {
     <main id="main-content">
       <PageHero
         eyebrow="PVC leather product range"
-        title="PVC Leather for Furniture Production"
+        title="PVC Upholstery Leather for Sofa & Furniture Production"
         description="Choose by application, then confirm thickness, texture, color, backing and performance through sample matching."
         image="/images/showroom-color-collection-wide-01.webp"
         imageAlt="Fanmei PVC leather color collection for furniture upholstery"
       >
-        <Link className="button button-gold" href="/rfq">Request specification matching</Link>
+        <div className="hero-actions"><Link className="button button-gold" href="/rfq">Get Factory FOB Quote</Link><Link className="button button-ghost" href="/sample-based-customization">Request Sample Matching</Link></div>
       </PageHero>
       <div className="container"><Breadcrumbs items={[{ label: 'Products' }]} /></div>
 
@@ -52,6 +55,7 @@ export default function ProductsPage() {
             <h2>Common production parameters</h2>
             <p>Final values are confirmed against your target sample, application and required order quantity.</p>
             <Link className="button button-dark" href="/rfq">Send your requirement</Link>
+            <Link className="text-link" href="/guides/pvc-leather-thickness-guide">Read the thickness guide <span>→</span></Link>
           </div>
           <div className="spec-table-wrap">
             <table className="spec-table">

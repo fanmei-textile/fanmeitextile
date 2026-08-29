@@ -22,6 +22,7 @@ function buildMessage(form: HTMLFormElement) {
     `Email: ${value('email')}`,
     `WhatsApp: ${value('whatsapp')}`,
     `Product: ${value('product')}`,
+    `Application: ${value('application')}`,
     `Thickness: ${value('thickness') || 'To be discussed'}`,
     `Estimated quantity: ${value('quantity')}`,
     `Requirement: ${value('message') || 'Please recommend a suitable construction.'}`,
@@ -35,6 +36,11 @@ export function RfqForm({ defaultProduct = '', compact = false }: RfqFormProps) 
   const validate = () => {
     if (!formRef.current?.reportValidity()) {
       setNotice('Please complete the required fields before continuing.')
+      return false
+    }
+    const data = new FormData(formRef.current)
+    if (!String(data.get('email') || '').trim() && !String(data.get('whatsapp') || '').trim()) {
+      setNotice('Please provide either an email address or WhatsApp number.')
       return false
     }
     return true
@@ -77,12 +83,12 @@ export function RfqForm({ defaultProduct = '', compact = false }: RfqFormProps) 
           <input name="country" autoComplete="country-name" required />
         </label>
         <label>
-          <span>Email *</span>
-          <input name="email" type="email" autoComplete="email" required />
+          <span>Email</span>
+          <input name="email" type="email" autoComplete="email" />
         </label>
         <label>
-          <span>WhatsApp *</span>
-          <input name="whatsapp" type="tel" autoComplete="tel" required />
+          <span>WhatsApp</span>
+          <input name="whatsapp" type="tel" autoComplete="tel" />
         </label>
         <label>
           <span>Product *</span>
@@ -94,10 +100,17 @@ export function RfqForm({ defaultProduct = '', compact = false }: RfqFormProps) 
           </select>
         </label>
         <label>
+          <span>Application *</span>
+          <select name="application" defaultValue="" required>
+            <option value="" disabled>Select an application</option>
+            {['Sofa / recliner', 'Chair / office seating', 'Hotel furniture', 'General furniture upholstery', 'Wall panel / interior upholstery', 'Distribution / wholesale', 'Other'].map((value) => <option key={value} value={value}>{value}</option>)}
+          </select>
+        </label>
+        <label>
           <span>Thickness</span>
           <select name="thickness" defaultValue="">
             <option value="">Select if known</option>
-            {['0.6 mm', '0.9 mm', '1.1 mm', '1.4 mm', '1.5 mm', '1.8 mm', 'Custom / sample match'].map((value) => (
+            {['0.6 mm', '0.9–1.0 mm', '1.1 mm', '1.4–1.5 mm', '1.8–2.0 mm', 'Custom / sample match'].map((value) => (
               <option key={value} value={value}>{value}</option>
             ))}
           </select>
@@ -113,7 +126,7 @@ export function RfqForm({ defaultProduct = '', compact = false }: RfqFormProps) 
       </div>
 
       <div className="form-actions">
-        <button className="button" type="submit">Send RFQ on WhatsApp</button>
+        <button className="button" type="submit">Get Factory FOB Quote</button>
         <button className="button button-outline" type="button" onClick={prepareEmail}>Prepare Email RFQ</button>
       </div>
       <p className="form-transparency">
