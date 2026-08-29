@@ -1,7 +1,7 @@
 export const site = {
   name: 'Fanmei Textile',
   legalName: 'HAINING FANMEI TEXTILE TECHNOLOGY CO., LTD.',
-  url: 'https://fanmeitextile.vercel.app',
+  url: 'https://fanmeitextile.com',
   email: 'wt657200@gmail.com',
   whatsappDisplay: '+86 176 0870 2004',
   whatsappNumber: '8617608702004',

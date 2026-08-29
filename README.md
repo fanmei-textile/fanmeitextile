@@ -33,4 +33,4 @@ The site intentionally does not claim to store RFQs without a configured backend
 
 ## Production
 
-The `main` branch is connected to the Vercel project `fanmeitextile`. The currently confirmed production URL is `https://fanmeitextile.vercel.app`.
+The `main` branch is connected to the Vercel project `fanmeitextile`. The confirmed production and indexing URL is `https://fanmeitextile.com`.
