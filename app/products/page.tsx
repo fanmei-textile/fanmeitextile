@@ -3,7 +3,9 @@ import Link from 'next/link'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { PageHero } from '@/components/page-hero'
 import { ProductCard } from '@/components/product-card'
+import { RealSeriesCard } from '@/components/real-series-card'
 import { products } from '@/lib/products'
+import { realProductSeries } from '@/lib/real-series'
 import { factorySpecifications } from '@/lib/specifications'
 
 export const metadata: Metadata = {
@@ -49,6 +51,10 @@ export default function ProductsPage() {
       </section>
 
       <section className="section section-tint">
+        <div className="container"><div className="section-heading split-heading"><div><p className="eyebrow">Real Fanmei color cards</p><h2>Verified PVC leather series</h2></div><p>Browse original color-card images, confirmed color references and only the specifications supported by the supplied product material.</p></div><div className="product-grid">{realProductSeries.map((series) => <RealSeriesCard series={series} key={series.slug} />)}</div></div>
+      </section>
+
+      <section className="section">
         <div className="container specs-layout">
           <div className="section-copy">
             <p className="eyebrow">Specification guide</p>

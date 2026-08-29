@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { products } from '@/lib/products'
+import { realProductSeries } from '@/lib/real-series'
 import { site } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -13,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...products.map((product) => ({
       url: `${site.url}/products/${product.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+    ...realProductSeries.map((series) => ({
+      url: `${site.url}/products/series/${series.slug}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,

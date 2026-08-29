@@ -2,6 +2,7 @@
 
 import { FormEvent, useRef, useState } from 'react'
 import { products } from '@/lib/products'
+import { realProductSeries } from '@/lib/real-series'
 import { site, whatsappUrl } from '@/lib/site'
 
 type RfqFormProps = {
@@ -95,6 +96,7 @@ export function RfqForm({ defaultProduct = '', compact = false }: RfqFormProps) 
           <select name="product" defaultValue={defaultProduct} required>
             <option value="" disabled>Select a product</option>
             {products.map((product) => <option key={product.slug} value={product.name}>{product.name}</option>)}
+            <optgroup label="Real Fanmei Series">{realProductSeries.map((series) => <option key={series.slug} value={series.name}>{series.name}</option>)}</optgroup>
             <option value="Cat Scratch Fabric">Cat Scratch Fabric</option>
             <option value="Solvent-free Leather">Solvent-free Leather</option>
           </select>

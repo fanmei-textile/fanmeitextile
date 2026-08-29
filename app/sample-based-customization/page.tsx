@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { PageHero } from '@/components/page-hero'
 import { site, whatsappUrl } from '@/lib/site'
+import { realProductSeries } from '@/lib/real-series'
 
 export const metadata: Metadata = {
   title: 'Custom PVC Upholstery Leather Sample Matching',
@@ -33,7 +34,7 @@ export default function SampleBasedCustomizationPage() {
       <article><p className="eyebrow">What Fanmei evaluates</p><h2>Review the material construction</h2><dl className="detail-list"><div><dt>Surface</dt><dd>Grain, gloss, hand feel and visible finish direction</dd></div><div><dt>Embossing</dt><dd>Pattern scale and surface character</dd></div><div><dt>Construction</dt><dd>Thickness, weight, backing and material structure</dd></div><div><dt>Color</dt><dd>Reference color direction for physical sample approval</dd></div></dl></article>
     </section>
 
-    <section className="section section-tint"><div className="container specs-layout"><div className="section-copy"><p className="eyebrow">Real color card structure</p><h2>Ready for verified Fanmei series</h2><p>Future product color cards can be added with series name, real image, embossing, thickness, gsm, width, backing, application and optional functions. Unknown values remain marked as custom specifications instead of being guessed.</p><Link className="button button-dark" href="/products">View PVC leather products</Link></div><div className="factory-feature-image"><Image src="/images/pvc-leather-color-card-display-01.webp" alt="Fanmei PVC upholstery leather real color card display" width={960} height={720} sizes="(max-width: 900px) 100vw, 50vw" /></div></div></section>
+    <section className="section section-tint"><div className="container specs-layout"><div className="section-copy"><p className="eyebrow">Real Fanmei color cards</p><h2>Compare verified series before custom development</h2><p>The current catalog preserves each supplied series image, confirmed color references and only the specifications supported by the product material. Unknown values remain marked for confirmation.</p><Link className="button button-dark" href="/products">View all PVC leather series</Link></div><div className="factory-feature-image"><Image src="/images/series/p62-pvc-upholstery-leather-color-card.jpg" alt="P62 real PVC upholstery leather color card for sample comparison" width={1706} height={1279} sizes="(max-width: 900px) 100vw, 50vw" /></div></div><div className="container series-link-list" aria-label="Real Fanmei series">{realProductSeries.map((series) => <Link key={series.slug} href={`/products/series/${series.slug}`}>{series.name}<span>→</span></Link>)}</div></section>
 
     <section className="section container"><div className="section-heading centered"><p className="eyebrow">Development process</p><h2>From reference to confirmed specification</h2></div><ol className="process-steps light-process">{['Send photos and application details', 'Arrange a physical sample when needed', 'Evaluate surface, backing and construction', 'Develop and review the new sample', 'Confirm specification and FOB quotation'].map((step, index) => <li key={step}><span>{index + 1}</span><p>{step}</p></li>)}</ol></section>
 
