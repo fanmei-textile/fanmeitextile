@@ -33,4 +33,4 @@ The site intentionally does not claim to store RFQs without a configured backend
 
 ## Production
 
-The `main` branch is connected to the Vercel project `fanmeitextile`. The confirmed production and indexing URL is `https://fanmeitextile.com`.
+The `main` branch deploys to Vercel. The confirmed production and indexing URL is `https://www.fanmeitextile.com`; the apex domain redirects permanently to the `www` host.
