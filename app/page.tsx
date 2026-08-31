@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ProductCard } from '@/components/product-card'
+import { RealSeriesCard } from '@/components/real-series-card'
 import { products } from '@/lib/products'
+import { realProductSeries } from '@/lib/real-series'
 import { defaultWhatsAppMessage, whatsappUrl } from '@/lib/site'
 
 const facts = [
@@ -90,6 +92,17 @@ export default function HomePage() {
       </section>
 
       <section className="section section-tint">
+        <div className="container">
+          <div className="section-heading split-heading">
+            <div><p className="eyebrow">Factory product range</p><h2>Real PVC leather color series</h2></div>
+            <p>Browse original Fanmei color cards with confirmed series references and verified specifications. Request a physical sample before bulk confirmation.</p>
+          </div>
+          <div className="product-grid">{realProductSeries.slice(0, 6).map((series) => <RealSeriesCard series={series} key={series.slug} />)}</div>
+          <div className="section-cta"><Link className="button button-dark" href="/products">View all real color series</Link></div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container">
           <div className="section-heading split-heading">
             <div>

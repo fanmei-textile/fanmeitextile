@@ -159,6 +159,11 @@ select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(201, 150,
 .product-card:hover .product-image img { transform: scale(1.025); }
 .real-series-card .product-image { aspect-ratio: 1.05; }
 .real-series-card .product-image img { object-fit: contain; background: #d9d9d6; }
+.series-card-specs { margin: 18px 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+.series-card-specs li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.76rem; line-height: 1.4; }
+.series-card-specs strong { color: var(--forest); }
+.series-card-specs span { color: var(--muted); text-align: right; }
+.series-card-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
 .product-card-copy { padding: 26px; }
 .card-kicker { margin: 0 0 9px !important; color: #986b24 !important; font-size: 0.69rem !important; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; }
 .product-card h3 { margin: 0; color: var(--forest); font-size: 1.42rem; line-height: 1.2; }

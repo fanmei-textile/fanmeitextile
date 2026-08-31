@@ -37,16 +37,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const related = products.filter((item) => item.slug !== product.slug).slice(0, 3)
   const productMessage = `Hello Fanmei Textile, I am interested in ${product.name}. Please help match a suitable specification and sample.`
-  const productSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    image: product.gallery.map((image) => `${site.url}${image}`),
-    description: product.summary,
-    brand: { '@type': 'Brand', name: site.name },
-    manufacturer: { '@type': 'Organization', name: site.legalName },
-    category: 'PVC synthetic leather for furniture upholstery',
-  }
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -166,7 +156,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <div className="section-heading split-heading"><div><p className="eyebrow">Related series</p><h2>Compare other applications</h2></div><Link className="text-link" href="/products">All products <span>→</span></Link></div>
         <div className="product-grid three-col">{related.map((item) => <ProductCard product={item} key={item.slug} />)}</div>
       </section>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </main>

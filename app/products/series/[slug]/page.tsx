@@ -25,16 +25,6 @@ export default async function RealSeriesPage({ params }: SeriesPageProps) {
   const series = getRealProductSeries((await params).slug)
   if (!series) notFound()
   const message = `Hello Fanmei Textile, I am interested in ${series.name}. Please share samples and an FOB quotation for my application.`
-  const properties = [
-    ...series.specifications.map((item) => ({ '@type': 'PropertyValue', name: item.label, value: item.value })),
-    ...(series.variants || []).flatMap((variant) => variant.specifications.map((item) => ({ '@type': 'PropertyValue', name: `${variant.name} ${item.label}`, value: item.value }))),
-    ...(series.colorCodes.length ? [{ '@type': 'PropertyValue', name: 'Confirmed color references', value: series.colorCodes.join(', ') }] : []),
-  ]
-  const productSchema = {
-    '@context': 'https://schema.org', '@type': 'Product', name: series.name, model: series.name.replace(' PVC Upholstery Leather Series', '').replace(' PVC Leather Series', ''),
-    image: [`${site.url}${series.image}`], description: series.summary, brand: { '@type': 'Brand', name: site.name }, manufacturer: { '@type': 'Organization', name: site.legalName },
-    category: 'PVC upholstery leather for sofa and furniture applications', ...(properties.length ? { additionalProperty: properties } : {}),
-  }
   const breadcrumbSchema = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: site.url }, { '@type': 'ListItem', position: 2, name: 'Products', item: `${site.url}/products` },
     { '@type': 'ListItem', position: 3, name: series.name, item: `${site.url}/products/series/${series.slug}` },
@@ -62,7 +52,6 @@ export default async function RealSeriesPage({ params }: SeriesPageProps) {
     {series.colorCodes.length ? <section className="section container"><div className="section-heading centered"><p className="eyebrow">Confirmed references</p><h2>{series.colorCodes.length} color codes shown in the real card</h2><p>Use the series code when requesting a physical swatch. Screen color can differ from the actual material.</p></div><ul className="color-code-grid" aria-label={`${series.name} color references`}>{series.colorCodes.map((code) => <li key={code}>{code}</li>)}</ul></section> : null}
 
     <section className="quote-band"><div className="container quote-band-inner"><div><p className="eyebrow light">Request this real series</p><h2>Confirm a color, sample and FOB quotation</h2><p>Include the series name, application, color reference, specification and estimated quantity.</p></div><div className="quote-band-actions"><a className="button button-gold" href={whatsappUrl(message)} target="_blank" rel="noreferrer">Request Free Swatches</a><Link className="button button-ghost" href={`/rfq?product=${encodeURIComponent(series.name)}`}>Get FOB Quote</Link></div></div></section>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
   </main>
 }
