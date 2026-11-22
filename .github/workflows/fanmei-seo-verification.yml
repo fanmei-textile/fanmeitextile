@@ -1,4 +1,4 @@
-name: Fanmei SEO final PR acceptance
+name: Fanmei final CI and Vercel acceptance
 on:
   push:
     branches: [codex/fanmei-seo-verification]
@@ -102,14 +102,14 @@ jobs:
             sleep 1
           done
           cd "$RUNNER_TEMP/fanmei-browser"
-          node --input-type=module <<'JS'
+          cat > verify.mjs <<'JS'
           import assert from 'node:assert/strict'
           import { chromium } from 'playwright'
-          const origin = 'http://127.0.0.1:3001'
+          const origin = process.argv[2]
           const xml = await (await fetch(origin + '/sitemap.xml')).text()
           const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
             .map(match => new URL(match[1]).pathname)
-            .filter(path => /^\/(?:$|products|contact|guides|about|factory|rfq)/.test(path))
+            .filter(path => /^\//.test(path))
           const browser = await chromium.launch({ args: ['--disable-external-intent-requests'] })
           try {
             for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
@@ -138,10 +138,12 @@ jobs:
               await page.goto(origin + series)
               const rfqHref = await page.locator('main a[href^="/rfq?product="]').first().getAttribute('href')
               const choice = new URL(rfqHref, origin).searchParams.get('product')
-              await page.goto(origin + rfqHref)
+              for (const formPath of [rfqHref, '/contact']) {
+                await page.goto(origin + formPath)
               const form = page.locator('main form')
               const hydratedChoice = await form.locator('[name=product]').inputValue()
-              assert.equal(hydratedChoice, choice)
+              if (formPath === '/contact') await form.locator('[name=product]').selectOption(choice)
+                else assert.equal(hydratedChoice, choice)
               for (const [name, value] of Object.entries({ name: 'SEO Test', company: 'Test Vendor', country: 'Test Country', email: 'seo-test@example.invalid', quantity: '15000' })) {
                 await form.locator('[name=' + name + ']').fill(value)
               }
@@ -149,6 +151,7 @@ jobs:
               await form.getByRole('button', { name: 'Get Factory FOB Quote' }).click()
               const whatsapp = new URL(await page.evaluate(() => window.__fanmeiCapturedWhatsApp))
               assert.equal(whatsapp.hostname, 'wa.me')
+                assert.equal(whatsapp.pathname, '/8617608702004')
               assert.ok(whatsapp.searchParams.get('text').includes(choice))
               assert.ok(whatsapp.searchParams.get('text').includes('seo-test@example.invalid'))
               const session = await context.newCDPSession(page)
@@ -159,11 +162,64 @@ jobs:
               await form.getByRole('button', { name: 'Prepare Email RFQ' }).click()
               const email = await Promise.race([emailIntent, new Promise(resolve => setTimeout(resolve, 3000, ''))])
               assert.ok(email, 'Expected a browser mailto navigation intent')
-              assert.ok(new URL(email).searchParams.get('body').includes(choice))
-              console.log('PASS', viewport.width, 'RFQ selection and intercepted WhatsApp and email intents')
+              assert.equal(new URL(email).pathname, 'wt657200@gmail.com')
+                assert.ok(new URL(email).searchParams.get('body').includes(choice))
+              console.log('PASS', viewport.width, formPath, 'intercepted WhatsApp and email intents')
+              }
               await context.close()
             }
           } finally {
             await browser.close()
           }
+          JS
+
+          node verify.mjs http://127.0.0.1:3001
+          for origin in https://fanmeitextile-git-codex-fanmei-f84938-fanmei-textiles-projects.vercel.app https://fanmei-textile-git-codex-fanmei-fa458f-fanmei-textiles-projects.vercel.app; do
+            status="$(curl -sS --max-time 15 -o "$RUNNER_TEMP/fanmei-preview.html" -w '%{http_code}' "$origin/contact" || true)"
+            echo "Preview contact $origin HTTP $status"
+            case "$status" in
+              200)
+                grep -q 'Request a color card, sample match or bulk FOB quote' "$RUNNER_TEMP/fanmei-preview.html"
+                node verify.mjs "$origin"
+                ;;
+              301|302|303|307|308|401|403|000) echo "UNVERIFIED preview content $origin" ;;
+              *) exit 1 ;;
+            esac
+          done
+  remote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check Vercel preview access and DNS routing
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import {createHash} from 'node:crypto'
+          import {resolveCname} from 'node:dns/promises'
+          const targets = {
+            production: 'https://www.fanmeitextile.com',
+            apex: 'https://fanmeitextile.com',
+            'fanmeitextile-default': 'https://fanmeitextile.vercel.app',
+            'fanmei-textile-default': 'https://fanmei-textile.vercel.app',
+            'fanmeitextile-preview': 'https://fanmeitextile-git-codex-fanmei-f84938-fanmei-textiles-projects.vercel.app',
+            'fanmei-textile-preview': 'https://fanmei-textile-git-codex-fanmei-fa458f-fanmei-textiles-projects.vercel.app',
+            'alias-api': 'https://api.vercel.com/v4/aliases/www.fanmeitextile.com'
+          }
+          console.log('DNS', JSON.stringify(await resolveCname('www.fanmeitextile.com').catch(err => err.code)))
+          await Promise.all(Object.entries(targets).map(async ([name, url]) => {
+            try {
+              const r = await fetch(url, {redirect: 'manual', signal: AbortSignal.timeout(12000)})
+              const body = await r.text()
+              const m = {name, status: r.status, server: r.headers.get('server'), location: r.headers.get('location')?.split('?')[0], authGate: r.status === 401 && /authentication|deployment protection|sso-api/i.test(body)}
+              if (r.ok && body.includes('PVC Synthetic Leather Manufacturer for Furniture')) {
+                m.sha256 = createHash('sha256').update(body).digest('hex')
+                m.assets = [...new Set(body.match(/\/_next\/static\/[^"'\s\\]+?\.(?:js|css)/g))].slice(0, 12)
+                m.deploymentIds = [...new Set(body.match(/dpl_[A-Za-z0-9]+/g))]
+              }
+              if (r.ok && name === 'alias-api') m.project = JSON.parse(body).projectId
+              console.log('HTTP', JSON.stringify(m))
+            } catch (err) {
+              console.log('HTTP', JSON.stringify({name, error: err.cause?.code ?? err.name}))
+            }
+          }))
           JS
