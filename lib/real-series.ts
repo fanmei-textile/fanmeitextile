@@ -51,7 +51,7 @@ export const realProductSeries: RealProductSeries[] = [
   {
     slug: 'y007', name: 'Y007 PVC Leather Series', image: '/images/series/y007-pvc-leather-color-card.jpg', imageAlt: 'Y007 PVC upholstery leather real color card numbered Y007-01 to Y007-38',
     summary: 'Fanmei Y007 PVC leather series shown with thirty-eight confirmed color references.', surface: 'Leather-grain surface visible in the supplied color card.',
-    colorCodes: numberedCodes('Y007-', 1, 38, 2), specifications: [], specificationNote: 'Custom specification available. Contact us for exact thickness / GSM / backing.',
+    colorCodes: numberedCodes('Y007-', 1, 38, 2), specifications: [],
   },
   {
     slug: '288', name: '288 PVC Leather Series', image: '/images/series/288-pvc-leather-color-card.jpg', imageAlt: '288 PVC upholstery leather real color card numbered 288-1 to 288-13',
@@ -72,7 +72,7 @@ export const realProductSeries: RealProductSeries[] = [
     colorCodes: numberedCodes('SL2788-', 1, 15), specifications: [], variants: [
       { name: 'SL2788 B', specifications: [{ label: 'Width', value: '140–142 cm' }, { label: 'Weight', value: '340 gsm ±5%' }, { label: 'Thickness', value: '0.9–1.0 mm' }] },
       { name: 'Verified thick construction', specifications: [{ label: 'Width', value: '140–142 cm' }, { label: 'Weight', value: '540 gsm ±5%' }, { label: 'Thickness', value: '2.0 mm' }] },
-    ], specificationNote: 'The thick construction is listed without a sub-model letter because the supplied instruction does not confirm that letter.',
+    ], specificationNote: 'Ask our team to confirm the exact variant when requesting a sample or quote.',
   },
   {
     slug: 'ly2888', name: 'LY2888 PVC Upholstery Leather Series', image: '/images/series/ly2888-pvc-leather-color-card.jpg', imageAlt: 'LY2888 PVC upholstery leather real color card and verified B and C specifications',

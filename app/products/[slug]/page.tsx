@@ -5,8 +5,15 @@ import { notFound } from 'next/navigation'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { ProductCard } from '@/components/product-card'
 import { getProduct, products } from '@/lib/products'
+import { getRealProductSeries } from '@/lib/real-series'
 import { site, whatsappUrl } from '@/lib/site'
 import { factorySpecifications } from '@/lib/specifications'
+
+const sampleSeriesByProduct: Record<string, readonly string[]> = {
+  'pvc-sofa-leather': ['p62', 'qy2688', 'sl2788'],
+  'pvc-upholstery-leather': ['p62', 'sl2788', 'ly2888'],
+  'custom-pvc-leather': ['2211', 'y007', '815'],
+}
 
 type ProductPageProps = { params: Promise<{ slug: string }> }
 
@@ -35,7 +42,15 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const product = getProduct(slug)
   if (!product) notFound()
 
-  const related = products.filter((item) => item.slug !== product.slug).slice(0, 3)
+  const prioritySlugs = ['pvc-sofa-leather', 'pvc-upholstery-leather', 'custom-pvc-leather', 'pvc-furniture-leather']
+  const related = prioritySlugs.flatMap((relatedSlug) => {
+    const item = getProduct(relatedSlug)
+    return item && item.slug !== product.slug ? [item] : []
+  }).slice(0, 3)
+  const sampleSeries = (sampleSeriesByProduct[product.slug] ?? []).flatMap((name) => {
+    const series = getRealProductSeries(name)
+    return series ? [series] : []
+  })
   const productMessage = `Hello Fanmei Textile, I am interested in ${product.name}. Please help match a suitable specification and sample.`
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -61,7 +76,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <div className="container"><Breadcrumbs items={[{ label: 'Products', href: '/products' }, { label: product.name }]} /></div>
       <section className="section product-detail-hero container">
         <div className="product-detail-media">
-          <Image src={product.image} alt={`${product.name} samples and surface options`} width={960} height={720} loading="eager" sizes="(max-width: 900px) 100vw, 52vw" />
+          <Image src={product.image} alt={product.heroImageAlt ?? `${product.name} samples and surface options`} width={960} height={720} loading="eager" sizes="(max-width: 900px) 100vw, 52vw" />
         </div>
         <div className="product-detail-copy">
           <p className="eyebrow">Factory-direct PVC leather</p>
@@ -111,6 +126,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <ul className="check-list dark-checks">{product.quoteChecks.map((item) => <li key={item}>{item}</li>)}</ul>
           <p>Reference photos help with initial review. A physical sample is recommended when surface, backing and construction must be matched.</p>
           <Link className="text-link" href="/sample-based-customization">See the sample matching process <span>→</span></Link>
+          <p><Link className="text-link" href="/guides/pvc-leather-thickness-guide">Compare upholstery thickness and backing</Link></p>
+          <p><Link className="text-link" href="/factory">See Fanmei’s factory and production process</Link></p>
         </article>
         <article>
           <p className="eyebrow">Commercial reference</p>
@@ -139,6 +156,22 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           ))}
         </div>
       </section>
+
+      {sampleSeries.length > 0 && (
+        <section className="section section-tint">
+          <div className="container detail-grid">
+            <div>
+              <h2>Compare Fanmei color cards</h2>
+              <p>Use these series as a starting point for color and texture. Confirm backing, thickness, weight and suitability on the requested sample before ordering.</p>
+            </div>
+            <ul className="check-list dark-checks">
+              {sampleSeries.map((series) => (
+                <li key={series.slug}><Link className="text-link" href={`/products/series/${series.slug}`}>{series.name}</Link></li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <section className="section buying-process">
         <div className="container">

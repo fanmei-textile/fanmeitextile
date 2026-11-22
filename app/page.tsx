@@ -40,7 +40,7 @@ export default function HomePage() {
           <p className="eyebrow light">Factory direct · Haining, China</p>
           <h1>PVC Synthetic Leather Manufacturer for Furniture & Upholstery</h1>
           <p className="hero-lead">
-            Factory-direct PVC leather for sofas, chairs, hotel furniture and commercial upholstery, with custom color, texture, thickness and backing.
+            Factory-direct PVC sofa and upholstery leather for sofa factories, furniture manufacturers and wholesalers. Compare color cards, request swatches and discuss bulk supply with Fanmei.
           </p>
           <div className="hero-actions">
             <Link className="button button-gold" href="/rfq">Get Factory FOB Quote</Link>

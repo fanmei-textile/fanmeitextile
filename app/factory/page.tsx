@@ -54,7 +54,7 @@ export default function FactoryPage() {
       </section>
 
       <section className="section container">
-        <div className="section-heading split-heading"><div><p className="eyebrow">Factory photos</p><h2>Production equipment and roll handling</h2></div><p>Images in this section come from the existing Fanmei project material library.</p></div>
+        <div className="section-heading split-heading"><div><p className="eyebrow">Factory photos</p><h2>Production equipment and roll handling</h2></div><p>See Fanmei’s PVC leather equipment, process control and roll handling.</p></div>
         <div className="factory-photo-grid">
           <figure><Image src="/images/factory-equipment-03.webp" alt="PVC leather manufacturing equipment" width={900} height={650} sizes="(max-width: 750px) 100vw, 50vw" /><figcaption>Production equipment</figcaption></figure>
           <figure><Image src="/images/factory-control-panel-04.webp" alt="Production line control panel" width={900} height={650} sizes="(max-width: 750px) 100vw, 50vw" /><figcaption>Process control</figcaption></figure>

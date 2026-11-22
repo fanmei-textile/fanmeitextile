@@ -18,7 +18,7 @@ export default function ContactPage() {
         <div className="container">
           <p className="eyebrow light">Contact Fanmei Textile</p>
           <h1>Discuss a PVC Leather Requirement</h1>
-          <p>For a useful first reply, include your application, target thickness, quantity, color or sample reference and expected order timing.</p>
+          <p>Request a color card, sample match or bulk FOB quote. Share your furniture application, estimated quantity, target thickness, color or sample reference and expected order timing.</p>
         </div>
       </section>
       <div className="container"><Breadcrumbs items={[{ label: 'Contact' }]} /></div>

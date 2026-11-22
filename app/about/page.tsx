@@ -17,7 +17,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Fanmei Textile"
         title="A Furniture-focused PVC Leather Manufacturer"
-        description="We support manufacturers, importers and distributors with practical PVC upholstery constructions and sample-based development."
+        description="Fanmei supplies PVC sofa and upholstery leather from Haining, China. We help furniture manufacturers, importers and distributors compare swatches and develop materials from a reference sample."
         image="/images/fanmei-office-reception-02.webp"
         imageAlt="Fanmei Textile office reception in Haining"
       >
