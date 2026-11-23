@@ -6,6 +6,10 @@ import { Breadcrumbs } from '@/components/breadcrumbs'
 import { getRealProductSeries, realProductSeries } from '@/lib/real-series'
 import { site, whatsappUrl } from '@/lib/site'
 
+function hasPublishedSpecifications(series: (typeof realProductSeries)[number]) {
+  return series.specifications.length > 0 || Boolean(series.variants?.some((variant) => variant.specifications.length > 0))
+}
+
 type SeriesPageProps = { params: Promise<{ slug: string }> }
 
 export function generateStaticParams() { return realProductSeries.map(({ slug }) => ({ slug })) }
@@ -14,8 +18,8 @@ export async function generateMetadata({ params }: SeriesPageProps): Promise<Met
   const series = getRealProductSeries((await params).slug)
   if (!series) return {}
   return {
-    title: `${series.name} Color Card & Specifications`,
-    description: `${series.summary} View the real color card, confirmed color references and verified specifications, then request a sample or FOB quote.`,
+    title: `${series.name} Color Card${hasPublishedSpecifications(series) ? ' & Specifications' : ''}`,
+    description: `${series.summary} ${hasPublishedSpecifications(series) ? 'Compare the published specifications and request a swatch.' : 'View the color card and ask for a swatch and construction details.'}`,
     alternates: { canonical: `/products/series/${series.slug}` },
     openGraph: { title: `${series.name} | Fanmei Textile`, description: series.summary, images: [{ url: series.image }] },
   }
@@ -40,18 +44,18 @@ export default async function RealSeriesPage({ params }: SeriesPageProps) {
     </section>
 
     <section className="section section-tint"><div className="container detail-grid">
-      <article><p className="eyebrow">Verified product data</p><h2>Specifications confirmed for this series</h2>
+      <article><p className="eyebrow">Material construction</p><h2>{hasPublishedSpecifications(series) ? 'Published series specifications' : 'Specifications to confirm'}</h2>
         {series.specifications.length ? <dl className="detail-list">{series.specifications.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl> : null}
         {series.variants?.map((variant) => <div className="series-variant" key={variant.name}><h3>{variant.name}</h3><dl className="detail-list">{variant.specifications.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl></div>)}
         {!series.specifications.length && !series.variants?.length ? <div className="response-note"><strong>Custom specification available</strong><p>Contact us for exact thickness / GSM / backing.</p></div> : null}
         {series.specificationNote ? <p className="series-note">{series.specificationNote}</p> : null}
       </article>
-      <article><p className="eyebrow">Buyer use</p><h2>Confirm against your application</h2><ul className="check-list dark-checks"><li>Sofa and recliner upholstery</li><li>Chair and furniture upholstery</li><li>Furniture material distribution</li><li>Sample-based specification matching</li></ul><p>Application suitability, optional functions and final construction are confirmed through samples and the buyer’s stated requirement.</p><Link className="text-link" href="/sample-based-customization">See sample-based development <span>→</span></Link></article>
+      <article><p className="eyebrow">Buyer use</p><h2>Confirm against your application</h2><ul className="check-list dark-checks"><li>Sofa and recliner upholstery</li><li>Chair and furniture upholstery</li><li>Furniture material distribution</li><li>Sample-based specification matching</li></ul><p>Application suitability, optional functions and final construction are confirmed through samples and the buyer’s stated requirement.</p><Link className="text-link" href="/sample-based-customization">See sample-based development <span>→</span></Link><p><Link className="text-link" href="/products/pvc-sofa-leather">Compare PVC sofa leather applications</Link></p></article>
     </div></section>
 
     {series.colorCodes.length ? <section className="section container"><div className="section-heading centered"><p className="eyebrow">Confirmed references</p><h2>{series.colorCodes.length} color codes shown in the real card</h2><p>Use the series code when requesting a physical swatch. Screen color can differ from the actual material.</p></div><ul className="color-code-grid" aria-label={`${series.name} color references`}>{series.colorCodes.map((code) => <li key={code}>{code}</li>)}</ul></section> : null}
 
-    <section className="quote-band"><div className="container quote-band-inner"><div><p className="eyebrow light">Request this real series</p><h2>Confirm a color, sample and FOB quotation</h2><p>Include the series name, application, color reference, specification and estimated quantity.</p></div><div className="quote-band-actions"><a className="button button-gold" href={whatsappUrl(message)} target="_blank" rel="noreferrer">Request Free Swatches</a><Link className="button button-ghost" href={`/rfq?product=${encodeURIComponent(series.name)}`}>Get FOB Quote</Link></div></div></section>
+    <section className="quote-band"><div className="container quote-band-inner"><div><p className="eyebrow light">Request this real series</p><h2>Confirm a color, sample and FOB quotation</h2><p>Include the series name, application, color reference, specification and estimated quantity.</p></div><div className="quote-band-actions"><a className="button button-gold" href={whatsappUrl(message)} target="_blank" rel="noreferrer">Request Swatches</a><Link className="button button-ghost" href={`/rfq?product=${encodeURIComponent(series.name)}`}>Get FOB Quote</Link></div></div></section>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
   </main>
 }

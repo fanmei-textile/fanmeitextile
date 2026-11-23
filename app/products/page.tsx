@@ -9,7 +9,7 @@ import { realProductSeries } from '@/lib/real-series'
 import { factorySpecifications } from '@/lib/specifications'
 
 export const metadata: Metadata = {
-  title: 'PVC Upholstery Leather Manufacturer & Product Range',
+  title: 'PVC Sofa & Upholstery Leather Product Range',
   description:
     'Compare Fanmei PVC sofa leather, upholstery leather, chair leather, furniture leather and custom PVC leather series for manufacturing and distribution.',
   alternates: { canonical: '/products' },
@@ -40,21 +40,27 @@ export default function ProductsPage() {
       </PageHero>
       <div className="container"><Breadcrumbs items={[{ label: 'Products' }]} /></div>
 
-      <section className="section container">
+      <div className="container hero-actions">
+        <Link className="text-link" href="#product-applications">Shop by furniture application</Link>
+        <Link className="text-link" href="#series-color-cards">Browse series and color cards</Link>
+        <Link className="text-link" href="#production-parameters">Check factory supply parameters</Link>
+      </div>
+
+      <section className="section container" id="product-applications">
         <div className="section-heading split-heading">
           <div><p className="eyebrow">Core series</p><h2>Start from the finished application</h2></div>
-          <p>These categories reduce duplicate browsing. Each series can be adjusted to the buyer’s confirmed construction.</p>
+          <p>Choose an application first, then compare color cards and request swatches for the construction you need.</p>
         </div>
         <div className="product-grid">
           {products.map((product) => <ProductCard product={product} key={product.slug} />)}
         </div>
       </section>
 
-      <section className="section section-tint">
+      <section className="section section-tint" id="series-color-cards">
         <div className="container"><div className="section-heading split-heading"><div><p className="eyebrow">Real Fanmei color cards</p><h2>Verified PVC leather series</h2></div><p>Browse original color-card images, confirmed color references and only the specifications supported by the supplied product material.</p></div><div className="product-grid">{realProductSeries.map((series) => <RealSeriesCard series={series} key={series.slug} />)}</div></div>
       </section>
 
-      <section className="section">
+      <section className="section" id="production-parameters">
         <div className="container specs-layout">
           <div className="section-copy">
             <p className="eyebrow">Specification guide</p>

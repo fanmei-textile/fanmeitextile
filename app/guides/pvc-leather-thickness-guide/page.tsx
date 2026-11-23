@@ -24,6 +24,20 @@ export default function ThicknessGuidePage() {
     <div className="container"><Breadcrumbs items={[{ label: 'Products', href: '/products' }, { label: 'Thickness Guide' }]} /></div>
     <section className="section container"><div className="section-heading split-heading"><div><p className="eyebrow">Thickness selection</p><h2>Use ranges as a starting point</h2></div><p>These ranges help buyers structure a discussion. Final suitability is confirmed through the target application and physical sample.</p></div><div className="simple-card-grid two">{ranges.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div></section>
     <section className="section section-tint"><div className="container detail-grid"><article><p className="eyebrow">Confirm together</p><h2>Do not specify thickness alone</h2><ul className="check-list dark-checks"><li>Finished sofa, chair or furniture application</li><li>Knitted, woven or non-woven backing</li><li>Target gsm where available</li><li>Surface grain, hand feel and color</li><li>Cutting, sewing, wrapping or gluing process</li></ul></article><article><p className="eyebrow">Commercial reference</p><h2>Factory supply information</h2><dl className="detail-list"><div><dt>Width</dt><dd>140–142 cm</dd></div><div><dt>Thickness</dt><dd>0.6–2.0 mm</dd></div><div><dt>MOQ</dt><dd>Usually 800–1,000 meters per color, depending on specification</dd></div><div><dt>FCL lead</dt><dd>Approx. 7–10 days after confirmation</dd></div><div><dt>Trade term</dt><dd>FOB</dd></div></dl></article></div></section>
+    <section className="section container detail-grid">
+      <article>
+        <h2>Compare thickness with weight and backing</h2>
+        <p>Thickness measures the material profile in millimeters. GSM measures mass per square meter. Similar thicknesses can use different backings and constructions. Compare how physical samples feel, cut and sew on your furniture before approving a bulk order.</p>
+      </article>
+      <article>
+        <h2>Look at published series examples</h2>
+        <ul className="check-list dark-checks">
+          <li><Link className="text-link" href="/products/series/p62">P62 color card and backing details</Link></li>
+          <li><Link className="text-link" href="/products/series/qy2688">QY2688 thickness and weight by variant</Link></li>
+          <li><Link className="text-link" href="/products/series/sl2788">SL2788 construction options and color card</Link></li>
+        </ul>
+      </article>
+    </section>
     <section className="section container"><div className="section-heading centered"><p className="eyebrow">Next step</p><h2>Compare the target construction with a sample</h2><p>Photos can support an initial review, while a physical sample gives the factory a better basis for evaluating thickness, weight, backing and surface.</p></div><div className="section-cta"><Link className="button button-dark" href="/sample-based-customization">Send Your Sample</Link></div></section>
     <section className="quote-band"><div className="container quote-band-inner"><div><p className="eyebrow light">Need a specification recommendation?</p><h2>Share the application and expected order volume</h2></div><div className="quote-band-actions"><Link className="button button-gold" href="/rfq">Get Factory FOB Quote</Link><Link className="button button-ghost" href="/products">Compare Products</Link></div></div></section>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

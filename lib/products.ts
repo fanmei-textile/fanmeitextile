@@ -5,6 +5,7 @@ export type Product = {
   name: string
   shortName: string
   image: string
+  heroImageAlt?: string
   gallery: string[]
   summary: string
   applications: string[]
@@ -24,15 +25,16 @@ export const products: Product[] = [
     name: 'PVC Sofa Leather',
     shortName: 'Sofa Leather',
     image: '/images/pvc-leather-color-rolls-01.webp',
+    heroImageAlt: 'Fanmei PVC upholstery leather rolls in several colors',
     gallery: ['/images/pvc-leather-color-rolls-01.webp', '/images/pvc-leather-color-card-2211.webp', '/images/showroom-color-collection-wide-01.webp'],
-    summary: 'PVC leather developed for sofa and recliner production, with selectable grains, colors, thicknesses and backing constructions.',
+    summary: 'Factory-direct PVC sofa leather for sofa manufacturers, furniture wholesalers and distributors. Compare grains and backing options for sofas, recliners and sectional seating.',
     applications: ['Sofas', 'Recliners', 'Sectional seating', 'Upholstered furniture'],
     buyerFit: 'Sofa factories, furniture wholesalers and upholstery material distributors',
     purchaseFocus: 'For sofa manufacturing, buyers normally confirm hand feel, grain, color continuity, backing, thickness and sewing or wrapping behavior before bulk ordering.',
     texture: 'Fine grain, medium grain, vintage and customer-sample embossing',
     backing: 'Knitted, woven or non-woven options selected for the target sofa construction',
     seoTitle: 'PVC Sofa Leather Manufacturer',
-    metaDescription: 'PVC sofa leather manufacturer in China for sofas and recliners. Custom color, embossing, backing and 0.6–2.0 mm thickness. Request an FOB quote.',
+    metaDescription: 'Factory-direct PVC sofa leather for sofa factories and distributors. Compare colors, grains and backing options, then request swatches or a bulk FOB quote.',
     quoteChecks: ['Sofa or recliner application', 'Target thickness and weight', 'Front, back and side photos or physical sample', 'Color, grain and backing', 'Quantity per color'],
     faqs: [
       { question: 'What thickness is available for PVC sofa leather?', answer: 'Fanmei can discuss PVC sofa leather from 0.6 to 2.0 mm. The suitable construction depends on the sofa application, backing, hand feel and target weight.' },
@@ -44,15 +46,16 @@ export const products: Product[] = [
     name: 'PVC Upholstery Leather',
     shortName: 'Upholstery Leather',
     image: '/images/showroom-pvc-leather-hanging-samples-02.webp',
+    heroImageAlt: 'Hanging PVC upholstery material swatches in the Fanmei showroom',
     gallery: ['/images/showroom-pvc-leather-hanging-samples-02.webp', '/images/pvc-leather-color-card-display-01.webp', '/images/pvc-leather-color-card-815.webp'],
-    summary: 'PVC synthetic upholstery leather for furniture and interior applications where repeatable color and construction matter.',
+    summary: 'Factory-direct PVC upholstery leather for furniture manufacturers and wholesale distributors sourcing repeatable colors, textures and backing options.',
     applications: ['Furniture upholstery', 'Hotel furniture', 'Wall panels', 'Soft interior decoration'],
     buyerFit: 'Upholstery manufacturers, contract furniture suppliers and importers',
     purchaseFocus: 'Upholstery programs often need one construction across several furniture shapes. Confirm the application, wrapping method, surface, backing and performance target before sampling.',
     texture: 'Multiple furniture grains with customer color and embossing development',
     backing: 'Knitted, woven and non-woven options according to the finished application',
     seoTitle: 'PVC Upholstery Leather Manufacturer',
-    metaDescription: 'Factory-direct PVC upholstery leather for furniture, hotel seating and interior upholstery. Custom thickness, grain, color and backing from China.',
+    metaDescription: 'Source PVC upholstery leather for furniture and hotel seating from Fanmei in China. Compare color cards and request samples or a factory FOB quote.',
     quoteChecks: ['Finished furniture application', 'Required surface and hand feel', 'Thickness or target gsm', 'Backing construction', 'Order quantity and timing'],
     faqs: [
       { question: 'Which applications use PVC upholstery leather?', answer: 'Typical uses include sofa and chair upholstery, hotel furniture, wall panels and other interior upholstery. The construction is selected for the finished application.' },
@@ -124,15 +127,16 @@ export const products: Product[] = [
     name: 'Custom PVC Leather',
     shortName: 'Custom PVC',
     image: '/images/pvc-leather-color-card-2211-2.webp',
+    heroImageAlt: 'Fanmei 2211 PVC leather color card for sample comparison',
     gallery: ['/images/pvc-leather-color-card-2211-2.webp', '/images/pvc-leather-color-card-display-01.webp', '/images/pvc-leather-sample-books-01.webp'],
-    summary: 'Sample-based PVC leather development with adjustable thickness, color, embossing, backing and construction for repeat orders.',
+    summary: 'Custom PVC leather for OEM furniture programs and distributors. Share a physical reference sample and purchase volume to discuss repeat supply.',
     applications: ['OEM furniture programs', 'Color-matched collections', 'Special upholstery', 'Distributor ranges'],
     buyerFit: 'Importers and manufacturers with a target sample or written specification',
     purchaseFocus: 'The most useful starting point is a physical target sample plus application, thickness, weight and quantity. Fanmei evaluates the sample before proposing a construction and FOB quotation.',
     texture: 'Developed from customer sample evaluation or selected embossing',
     backing: 'Knitted, woven or non-woven backing selected for the target construction',
     seoTitle: 'Custom PVC Leather Manufacturer',
-    metaDescription: 'Custom PVC leather developed from buyer samples and requirements. Match color, embossing, thickness, gsm and backing for OEM furniture production.',
+    metaDescription: 'Develop custom PVC leather for sofa upholstery from a reference sample. Discuss color, grain, backing, thickness and weight before approving a sample.',
     quoteChecks: ['Front, back and side sample photos', 'Physical sample when available', 'Thickness and gsm or weight', 'Application and backing', 'Quantity and target timing'],
     faqs: [
       { question: 'Can Fanmei copy my existing PVC leather?', answer: 'Fanmei can evaluate and develop according to a customer sample. Exact feasibility is confirmed after reviewing the physical sample and required specification; a 100% identical result is not promised.' },
